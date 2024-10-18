@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import '../Themes/app_theme.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginState extends State<Login> {
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(  
       body:Container(
         decoration: const BoxDecoration(
@@ -32,24 +31,23 @@ class _LoginState extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              sigIn(),
+              register(),
               const SizedBox(height: 10,),
               userField(),
               passwordField(),
+              repeatPasswordField(),
               const SizedBox(height: 10,),
-              loginButton(),
+              registerButton(),
             ]
         )
         )  
-      ) 
-        
-      
+      )       
     );
   }
 }
 
-Widget sigIn(){
-  return const Text("Login", style: TextStyle(color: AppColor.secundary, fontSize: 25.0, fontWeight: FontWeight.bold),);
+Widget register(){
+  return const Text("Registro", style: TextStyle(color: AppColor.secundary, fontSize: 25.0, fontWeight: FontWeight.bold),);
 }
 
 Widget userField(){
@@ -79,7 +77,21 @@ Widget passwordField(){
   );
 }
 
-Widget loginButton(){
+Widget repeatPasswordField(){
+  return Container(
+    padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+    child: const TextField(
+      obscureText: true,
+      decoration: InputDecoration(
+        hintText: "Repetir contraseña",
+        fillColor: Colors.white,
+        filled: true,
+      ),
+    )
+  );
+}
+
+Widget registerButton(){
   return FilledButton.tonal(
     onPressed: () {
     },
@@ -87,6 +99,6 @@ Widget loginButton(){
       backgroundColor: AppColor.secundary,
       foregroundColor: Colors.white, 
     ),
-    child: const Text("Ingresar"),
+    child: const Text("Registrar"),
   );
 }

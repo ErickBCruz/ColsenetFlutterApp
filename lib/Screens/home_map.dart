@@ -1,3 +1,4 @@
+import 'package:colsenet/Themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 
@@ -10,7 +11,7 @@ class MapPage extends StatefulWidget {
 
 class _MapPageState extends State<MapPage> {
   MapController controller = MapController(
-    initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
+    initPosition: GeoPoint(latitude: 4.1425, longitude: -73.6294),
     areaLimit: const BoundingBox(
       east: 10.4922941,
       north: 47.8084648,
@@ -28,7 +29,7 @@ class _MapPageState extends State<MapPage> {
             unFollowUser: false,
           ),
           zoomOption: const ZoomOption(
-            initZoom: 8,
+            initZoom: 13,
             minZoomLevel: 3,
             maxZoomLevel: 19,
             stepZoom: 1.0,
@@ -37,7 +38,7 @@ class _MapPageState extends State<MapPage> {
             personMarker: const MarkerIcon(
               icon: Icon(
                 Icons.location_history_rounded,
-                color: Colors.red,
+                color: AppColor.secundary,
                 size: 48,
               ),
             ),
@@ -49,16 +50,10 @@ class _MapPageState extends State<MapPage> {
             ),
           ),
           roadConfiguration: const RoadOption(
-            roadColor: Colors.yellowAccent,
+            roadColor: AppColor.complement,
           ),
-          // markerOption: MarkerOption(
-          //     defaultMarker: const MarkerIcon(
-          //   icon: Icon(
-          //     Icons.person_pin_circle,
-          //     color: Colors.blue,
-          //     size: 56,
-          //   ),
-          // )),
-        ));
+        )
+      );
   }
+  
 }

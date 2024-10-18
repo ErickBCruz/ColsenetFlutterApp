@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'Screens/home_map.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../Themes/app_theme.dart';
+import 'Screens/register.dart';
 
 void main() {
   runApp(const MainApp());
@@ -48,6 +49,7 @@ class _InicioState extends State<Inicio> {
           SpeedDialChild(
             child: const Icon(Icons.person),
             label: 'Ingresar',
+            backgroundColor: AppColor.secundary,
             onTap: () {
               Navigator.push(
                 context,
@@ -58,16 +60,18 @@ class _InicioState extends State<Inicio> {
           SpeedDialChild(
             child: const Icon(Icons.person_add),
             label: 'Registro',
+            backgroundColor: AppColor.secundary,
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Login()),
+                MaterialPageRoute(builder: (context) => const Register()),
               );
             },
           ),
           SpeedDialChild(
-            child: const Icon(Icons.info),
+            child: const Icon(Icons.help),
             label: 'Ayuda',
+            backgroundColor: AppColor.secundary,
             onTap: () {
               Navigator.push(
                 context,
