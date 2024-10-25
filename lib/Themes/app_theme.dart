@@ -7,3 +7,8 @@ class AppColor {
   static const Color complement = Color(0xFF3D3D3D);
 
 }
+
+class MapTheme {
+  // ignore: constant_identifier_names
+  static const MAPBOX_STYLE = 'mapbox/dark-v11';
+}
