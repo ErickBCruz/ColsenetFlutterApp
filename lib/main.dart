@@ -1,10 +1,12 @@
+import 'package:colsenet/Screens/add_event.dart';
 import 'package:colsenet/Screens/login.dart';
 import 'package:flutter/material.dart';
-//import 'Screens/login.dart';
-import 'Screens/home_map.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../Themes/app_theme.dart';
+import 'Screens/home_map.dart';
 import 'Screens/register.dart';
+import 'Screens/markers_map.dart';
+
 
 void main() {
   runApp(const MainApp());
@@ -39,7 +41,7 @@ class _InicioState extends State<Inicio> {
       ),
       body: const Stack(
         children: [
-          MapPage()
+          MarkersMap()
         ],
       ),
       floatingActionButton: SpeedDial(
@@ -75,7 +77,18 @@ class _InicioState extends State<Inicio> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Login()),
+                MaterialPageRoute(builder: (context) => const AddEvent()),
+              );
+            },
+          ),
+          SpeedDialChild(
+            child: const Icon(Icons.add_circle),
+            label: 'Agregar evento',
+            backgroundColor: AppColor.secundary,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AddEvent()),
               );
             },
           ),
