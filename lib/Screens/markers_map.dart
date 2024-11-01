@@ -25,7 +25,8 @@ class MarkersMap extends StatelessWidget {
     //MapMarker marker = new MapMarker(title: "titulo", description:  "Marker", location: LatLng(1, 1));
     
     
-    List<Marker> _buildMarkers() {
+    List<Marker> _buildMarkers(BuildContext context) {
+      // ignore: no_leading_underscores_for_local_identifiers
       final _markerList = <Marker> [];
       for (int i = 0; i < MapMarkers.length; i++) {
         final mapItem = MapMarkers[i];
@@ -34,6 +35,27 @@ class MarkersMap extends StatelessWidget {
             height: 15,
             width: 15,
             point: mapItem.location,
+          child: GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(mapItem.title, style: const TextStyle(color: AppColor.secundary, fontSize: 25.0, fontWeight: FontWeight.bold),),
+                    content: Text(mapItem.description, style: const TextStyle(color: AppColor.complement, fontSize: 10.0, fontWeight: FontWeight.normal),),
+                    backgroundColor: AppColor.primary,
+                    actions: <Widget>[
+                      TextButton(
+                        child: const Text('Cerrar', style: const TextStyle(color: AppColor.secundary, fontSize: 15.0, fontWeight: FontWeight.bold),),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
             child: Container(
               height: 15,
               width: 15,
@@ -42,6 +64,7 @@ class MarkersMap extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
             ),
+          ),
           ),
         );
       }
@@ -52,7 +75,8 @@ class MarkersMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _markers = _buildMarkers();
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _markers = _buildMarkers(context);
     
     return FlutterMap(
       options: MapOptions(
@@ -81,7 +105,7 @@ class MarkersMap extends StatelessWidget {
                 height: 15,
                 width: 15,
                 decoration: const BoxDecoration(
-                  color: AppColor.secundary,
+                  color: Color.fromARGB(255, 245, 0, 184),
                   shape: BoxShape.circle,
                 ),
               ),
@@ -91,39 +115,41 @@ class MarkersMap extends StatelessWidget {
         MarkerLayer(
           markers: _markers,
         ),
-            // Marker(
-            // height: 15,
-            // width: 15,
-            // point: const LatLng(4.113338212666203, -73.60855028561987), child: Container(
-            //   height: 15,
-            //   width: 15,
-            //   decoration: const BoxDecoration(
-            //     color: AppColor.secundary,
-            //     shape: BoxShape.circle,
-            //   ),
-            // ), ),
-            // const Marker(
-            // height: 15,
-            // width: 15,
-            // point: LatLng(4.1108068357157475, -73.59975907035131), child: 
-            //   LocationMarker(),
-            //   ),
-        ] );
+        // Marker(
+        // height: 15,
+        // width: 15,
+        // point: const LatLng(4.113338212666203, -73.60855028561987), child: Container(
+        //   height: 15,
+        //   width: 15,
+        //   decoration: const BoxDecoration(
+        //     color: AppColor.secundary,
+        //     shape: BoxShape.circle,
+        //   ),
+        // ), ),
+        // const Marker(
+        // height: 15,
+        // width: 15,
+        // point: LatLng(4.1108068357157475, -73.59975907035131), child: 
+        //   LocationMarker(),
+        //   ),
+      ] 
+    );
+    
   }
 }
 
-class LocationMarker extends StatelessWidget {
-  const LocationMarker({super.key});
+// class LocationMarker extends StatelessWidget {
+//   const LocationMarker({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 255, 0, 200),
-                shape: BoxShape.circle,
-              ),
-            );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//               height: 15,
+//               width: 15,
+//               decoration: const BoxDecoration(
+//                 color: Color.fromARGB(255, 255, 0, 200),
+//                 shape: BoxShape.circle,
+//               ),
+//             );
+//   }
+// }
