@@ -21,8 +21,39 @@ final _currentLocation = LatLng(4.13024240968076, -73.6151985856292);
 class MarkersMap extends StatelessWidget {
   const MarkersMap({super.key});
 
+  // ignore: avoid_print
+    //MapMarker marker = new MapMarker(title: "titulo", description:  "Marker", location: LatLng(1, 1));
+    
+    
+    List<Marker> _buildMarkers() {
+      final _markerList = <Marker> [];
+      for (int i = 0; i < MapMarkers.length; i++) {
+        final mapItem = MapMarkers[i];
+        _markerList.add(
+          Marker(
+            height: 15,
+            width: 15,
+            point: mapItem.location,
+            child: Container(
+              height: 15,
+              width: 15,
+              decoration: const BoxDecoration(
+                color: MARKER_COLOR,
+                shape: BoxShape.circle,
+              ),
+            ),
+          ),
+        );
+      }
+      return _markerList;
+    }
+
+    //print (marker.description);
+
   @override
   Widget build(BuildContext context) {
+    final _markers = _buildMarkers();
+    
     return FlutterMap(
       options: MapOptions(
         initialCenter: _currentLocation,
@@ -30,7 +61,6 @@ class MarkersMap extends StatelessWidget {
         minZoom: 13,
         initialZoom: 14.7,
       ),
-      
       children: [
         TileLayer(
           urlTemplate: 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',
@@ -40,88 +70,60 @@ class MarkersMap extends StatelessWidget {
           },
           userAgentPackageName: 'dev.fleaflet.flutter_map.example',
         ),
-        MarkerLayer(markers:[
-          ///pruebas
-          Marker(
-            height: 15,
-            width: 15,
-            point: _currentLocation, child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 241, 120, 120),
-                shape: BoxShape.circle,
-              ),
-            ), ),
+        MarkerLayer(
+          markers: [
+            ///pruebas
             Marker(
-            height: 15,
-            width: 15,
-            point: const LatLng(4.115074383335092, -73.60819297496197), child: Container(
               height: 15,
               width: 15,
-              decoration: const BoxDecoration(
-                color: AppColor.secundary,
-                shape: BoxShape.circle,
+              point: _currentLocation,
+              child: Container(
+                height: 15,
+                width: 15,
+                decoration: const BoxDecoration(
+                  color: AppColor.secundary,
+                  shape: BoxShape.circle,
+                ),
               ),
-            ), ),
-            Marker(
-            height: 15,
-            width: 15,
-            point: const LatLng(4.115136157075193, -73.61084151473719), child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: AppColor.secundary,
-                shape: BoxShape.circle,
-              ),
-            ), ),
-            Marker(
-            height: 15,
-            width: 15,
-            point: const LatLng(4.1170968802448975, -73.61119113167645), child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: AppColor.secundary,
-                shape: BoxShape.circle,
-              ),
-            ), ),
-            Marker(
-            height: 15,
-            width: 15,
-            point: const LatLng(4.126347763311018, -73.61699799069477), child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: AppColor.secundary,
-                shape: BoxShape.circle,
-              ),
-            ), ),
-            Marker(
-            height: 15,
-            width: 15,
-            point: const LatLng(4.113338212666203, -73.60855028561987), child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: AppColor.secundary,
-                shape: BoxShape.circle,
-              ),
-            ), ),
-            Marker(
-            height: 15,
-            width: 15,
-            point: const LatLng(4.1108068357157475, -73.59975907035131), child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: AppColor.secundary,
-                shape: BoxShape.circle,
-              ),
-            ), ),
-        ] )
-      ],
-    );
+            ),
+          ],
+        ),
+        MarkerLayer(
+          markers: _markers,
+        ),
+            // Marker(
+            // height: 15,
+            // width: 15,
+            // point: const LatLng(4.113338212666203, -73.60855028561987), child: Container(
+            //   height: 15,
+            //   width: 15,
+            //   decoration: const BoxDecoration(
+            //     color: AppColor.secundary,
+            //     shape: BoxShape.circle,
+            //   ),
+            // ), ),
+            // const Marker(
+            // height: 15,
+            // width: 15,
+            // point: LatLng(4.1108068357157475, -73.59975907035131), child: 
+            //   LocationMarker(),
+            //   ),
+        ] );
   }
 }
 
+class LocationMarker extends StatelessWidget {
+  const LocationMarker({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+              height: 15,
+              width: 15,
+              decoration: const BoxDecoration(
+                color: Color.fromARGB(255, 255, 0, 200),
+                shape: BoxShape.circle,
+              ),
+            );
+  }
+}
