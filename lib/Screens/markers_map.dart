@@ -43,6 +43,11 @@ class MarkersMap extends StatelessWidget {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text(mapItem.title, style: const TextStyle(color: AppColor.secundary, fontSize: 25.0, fontWeight: FontWeight.bold),),
+                    icon: Icon(
+                        mapItem.risk == 1 ? Icons.sentiment_neutral_outlined : mapItem.risk == 2 ? Icons.sentiment_dissatisfied_outlined : Icons.sentiment_very_dissatisfied_sharp,
+                        color: mapItem.risk == 1 ? Colors.yellow : mapItem.risk == 2 ? Colors.orange : mapItem.risk == 3 ? Colors.red : AppColor.secundary,
+                        size: 80.0,
+                    ),
                     content: Text(mapItem.description, style: const TextStyle(color: AppColor.complement, fontSize: 10.0, fontWeight: FontWeight.normal),),
                     backgroundColor: AppColor.primary,
                     actions: <Widget>[
@@ -79,6 +84,13 @@ class MarkersMap extends StatelessWidget {
       if (querySnapshot.docs.isNotEmpty) {
         for (var doc in querySnapshot.docs) {
           debugPrint(doc.data().toString());
+          MapMarker marker = MapMarker(
+          title: doc['title'],
+          description: doc['description'],
+          location: LatLng(doc['lat'], doc['lng']),
+          risk: doc['risk'],
+          );
+          debugPrint(marker.toString());
         }
       } else {
         debugPrint('No data found in firebase_service collection');
@@ -151,42 +163,6 @@ class MarkersMap extends StatelessWidget {
   }
 }
 
-class EventWidget extends StatefulWidget {
-  const EventWidget({super.key});
-
-  @override
-  State<EventWidget> createState() => _EventWidgetState();
-}
-
-class _EventWidgetState extends State<EventWidget> {
-
-  @override
-  void initState() {
-    // Initialize the state
-    super.initState();
-    getEvents();
-  }
-
-  void getEvents() async {
-    CollectionReference collectionReference = FirebaseFirestore.instance.collection('events');
-
-    QuerySnapshot events = await collectionReference.get();
-
-    if (events.docs.isNotEmpty) {
-      
-      for (var doc in events.docs){
-        debugPrint(doc.data().toString());
-      }
-
-    } 
-
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
 
 // class LocationMarker extends StatelessWidget {
 //   const LocationMarker({super.key});
