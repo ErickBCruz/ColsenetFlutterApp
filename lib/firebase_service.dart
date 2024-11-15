@@ -3,15 +3,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 FirebaseFirestore db = FirebaseFirestore.instance;
 
 Future<List> getEvents() async {
-  List events = [];
+  List event = [];
 
-  CollectionReference collectionReferenceEvents = db.collection('events');
+  CollectionReference collectionReferenceEvent = db.collection('event');
 
-  QuerySnapshot queryEvents = await collectionReferenceEvents.get();
+  QuerySnapshot queryEvent = await collectionReferenceEvent.get();
 
-  queryEvents.docs.forEach((doc) {
-    events.add(doc.data());
-  });
+  for (var doc in queryEvent.docs) {
+    event.add(doc.data());
+  }
 
-  return events;
+  return event;
 }

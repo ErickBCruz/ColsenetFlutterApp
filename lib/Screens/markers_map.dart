@@ -71,14 +71,26 @@ class MarkersMap extends StatelessWidget {
       }
       return _markerList;
     }
-    
+    void _printFirebaseServiceData() async {
+      CollectionReference collectionReference = FirebaseFirestore.instance.collection('event');
+
+      QuerySnapshot querySnapshot = await collectionReference.get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        for (var doc in querySnapshot.docs) {
+          debugPrint(doc.data().toString());
+        }
+      } else {
+        debugPrint('No data found in firebase_service collection');
+      }
+    }
     //print (marker.description);
 
   @override
   Widget build(BuildContext context) {
     // ignore: no_leading_underscores_for_local_identifiers
     final _markers = _buildMarkers(context);
-    
+    _printFirebaseServiceData();
     return FlutterMap(
       options: MapOptions(
         initialCenter: _currentLocation,
