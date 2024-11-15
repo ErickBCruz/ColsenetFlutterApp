@@ -30,6 +30,7 @@ final _locations = [
   const LatLng(4.152583891914292, -73.62668249363261),
 ];
 
+// ignore: unused_element
 const _path = '../Screens/markers_map.dart';
 
 // ignore: non_constant_identifier_names

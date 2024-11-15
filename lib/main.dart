@@ -1,6 +1,5 @@
 import 'package:colsenet/Screens/add_event.dart';
 import 'package:colsenet/Screens/login.dart';
-import 'package:colsenet/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../Themes/app_theme.dart';

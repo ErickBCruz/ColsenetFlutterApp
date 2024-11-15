@@ -27,6 +27,7 @@ class MarkersMap extends StatelessWidget {
     
     
     List<Marker> _buildMarkers(BuildContext context) {
+      _printFirebaseServiceData();
       // ignore: no_leading_underscores_for_local_identifiers
       final _markerList = <Marker> [];
       for (int i = 0; i < MapMarkers.length; i++) {
@@ -62,13 +63,10 @@ class MarkersMap extends StatelessWidget {
                 },
               );
             },
-            child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: MARKER_COLOR,
-                shape: BoxShape.circle,
-              ),
+            child: Icon(
+              Icons.location_on,
+              color: mapItem.risk == 1 ? Colors.yellow : mapItem.risk == 2 ? Colors.orange : mapItem.risk == 3 ? Colors.red : MARKER_COLOR,
+              size: 30.0,
             ),
           ),
           ),
@@ -91,6 +89,7 @@ class MarkersMap extends StatelessWidget {
           risk: doc['risk'],
           );
           debugPrint(marker.toString());
+          MapMarkers.add(marker);
         }
       } else {
         debugPrint('No data found in firebase_service collection');
@@ -102,7 +101,7 @@ class MarkersMap extends StatelessWidget {
   Widget build(BuildContext context) {
     // ignore: no_leading_underscores_for_local_identifiers
     final _markers = _buildMarkers(context);
-    _printFirebaseServiceData();
+
     return FlutterMap(
       options: MapOptions(
         initialCenter: _currentLocation,
