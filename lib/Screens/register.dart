@@ -55,7 +55,7 @@ Widget userField(){
     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
     child: const TextField(
       decoration: InputDecoration(
-        hintText: "Correo electronico",
+        hintText: "Correo electrónico",
         fillColor: Colors.white,
         filled: true,
       ),

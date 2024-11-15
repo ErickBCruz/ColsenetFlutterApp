@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "836589036573",
+    "project_id": "colsenet-45943",
+    "storage_bucket": "colsenet-45943.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836589036573:android:0dc77b07b2b280d69c92f4",
+        "android_client_info": {
+          "package_name": "com.example.colsenet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDY-ma1rxyaUpWuRykN8vvhjwdCp3VAAaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

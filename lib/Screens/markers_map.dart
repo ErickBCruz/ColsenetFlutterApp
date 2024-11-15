@@ -1,4 +1,5 @@
 // ignore: unused_import
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:colsenet/Tests/map_marker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -70,7 +71,7 @@ class MarkersMap extends StatelessWidget {
       }
       return _markerList;
     }
-
+    
     //print (marker.description);
 
   @override
@@ -138,6 +139,43 @@ class MarkersMap extends StatelessWidget {
   }
 }
 
+class EventWidget extends StatefulWidget {
+  const EventWidget({super.key});
+
+  @override
+  State<EventWidget> createState() => _EventWidgetState();
+}
+
+class _EventWidgetState extends State<EventWidget> {
+
+  @override
+  void initState() {
+    // Initialize the state
+    super.initState();
+    getEvents();
+  }
+
+  void getEvents() async {
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection('events');
+
+    QuerySnapshot events = await collectionReference.get();
+
+    if (events.docs.isNotEmpty) {
+      
+      for (var doc in events.docs){
+        debugPrint(doc.data().toString());
+      }
+
+    } 
+
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
 // class LocationMarker extends StatelessWidget {
 //   const LocationMarker({super.key});
 
@@ -153,3 +191,4 @@ class MarkersMap extends StatelessWidget {
 //             );
 //   }
 // }
+

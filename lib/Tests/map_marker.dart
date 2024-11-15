@@ -21,16 +21,21 @@ final _locations = [
   const LatLng(4.126347763311018, -73.61699799069477),
   const LatLng(4.113338212666203, -73.60855028561987),
   const LatLng(4.1108068357157475, -73.59975907035131),
+
+  const LatLng(4.128668985898988, -73.63768500943492),
+  const LatLng(4.1501365367748475, -73.63631827938111),
+  const LatLng(4.151771954694709, -73.63690591221419),
+  const LatLng(4.152583891914292, -73.62668249363261),
 ];
 
 const _path = '../Screens/markers_map.dart';
 
 // ignore: non_constant_identifier_names
 final MapMarkers = [
-
+  
   MapMarker(
     title: 'Robo con fuerza',
-    description: 'robo con vehiculo, no presenta placas, uso de arma de fuego, uso de sustancias sedantes, 4 personas involucradas',
+    description: 'robo con vehículo, no presenta placas, uso de arma de fuego, uso de sustancias sedantes, 4 personas involucradas',
     location: _locations[0],
   ),
   MapMarker(
@@ -50,7 +55,7 @@ final MapMarkers = [
   ),
   MapMarker(
     title: 'Asesinato en zona residencial',
-    description: 'Persona fallecida en el lugar debido a disparos, agresores desconocidos huyeron, sin informacon de los involucrados.',
+    description: 'Persona fallecida en el lugar debido a disparos, agresores desconocidos huyeron, sin información de los involucrados.',
     location: _locations[4],
   ),
   MapMarker(

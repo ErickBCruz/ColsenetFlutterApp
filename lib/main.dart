@@ -1,5 +1,6 @@
 import 'package:colsenet/Screens/add_event.dart';
 import 'package:colsenet/Screens/login.dart';
+import 'package:colsenet/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../Themes/app_theme.dart';
@@ -7,27 +8,38 @@ import '../Themes/app_theme.dart';
 import 'Screens/home_map.dart';
 import 'Screens/register.dart';
 import 'Screens/markers_map.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+//import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
+  
+
   @override
   Widget build(BuildContext context) {
+    
     return const MaterialApp(
       title: "Colsenet",
       home: Inicio(),
+      
     );
   }
 }
 
 class Inicio extends StatefulWidget {
   const Inicio({super.key});
-
+  
   @override
   State<Inicio> createState() => _InicioState();
 }
@@ -35,6 +47,7 @@ class Inicio extends StatefulWidget {
 class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
+    //const EventWidget();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.primary,
@@ -98,3 +111,41 @@ class _InicioState extends State<Inicio> {
     );
   }
 }
+
+
+// class EventWidget extends StatefulWidget {
+//   const EventWidget({super.key});
+
+//   @override
+//   State<EventWidget> createState() => _EventWidgetState();
+// }
+
+// class _EventWidgetState extends State<EventWidget> {
+
+//   @override
+//   void initState() {
+//     // Initialize the state
+//     super.initState();
+//     getEvents();
+//   }
+
+//   void getEvents() async {
+//     CollectionReference collectionReference = FirebaseFirestore.instance.collection('events');
+
+//     QuerySnapshot events = await collectionReference.get();
+
+//     if (events.docs.isNotEmpty) {
+      
+//       for (var doc in events.docs){
+//         print(doc.data());
+//       }
+
+//     } 
+
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }
