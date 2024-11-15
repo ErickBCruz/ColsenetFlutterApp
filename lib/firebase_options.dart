@@ -2,6 +2,7 @@
 // ignore_for_file: type=lint
 import 'package:firebase_core/firebase_core.dart' show FirebaseOptions;
 import 'package:flutter/foundation.dart'
+import 'package:colsenet/api_key.dart';
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
@@ -53,7 +54,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDY-ma1rxyaUpWuRykN8vvhjwdCp3VAAaw',
+    apiKey: ApiKey.FIREBASE_API_KEY,
     appId: '1:836589036573:android:0dc77b07b2b280d69c92f4',
     messagingSenderId: '836589036573',
     projectId: 'colsenet-45943',
